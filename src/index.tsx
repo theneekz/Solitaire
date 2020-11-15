@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import GameplayBoard from './components/GameplayBoard';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GameplayBoard />
   </React.StrictMode>,
   document.getElementById('root')
 );

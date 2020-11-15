@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import GameplayBoard from './components/GameplayBoard';
+import GameplayBoard from './components/GameplayBoard.component';
 
 ReactDOM.render(
   <React.StrictMode>

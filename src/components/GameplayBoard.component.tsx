@@ -1,7 +1,8 @@
 import React from 'react';
-import GameplayDeck from './Gameplay-Deck';
+import GameplayDeck from './GameplayDeck.component';
 import { ICard } from '../models/Card';
 import { Deck } from '../models/Deck';
+import '../Card.css'
 
 const GameplayBoard = () => {
 

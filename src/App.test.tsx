@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import GameplayBoard from './components/GameplayBoard';
+import GameplayBoard from './components/GameplayBoard.component';
 
 test('renders learn react link', () => {
   render(<GameplayBoard />);

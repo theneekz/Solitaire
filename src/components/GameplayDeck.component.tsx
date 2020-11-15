@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { ICard } from '../models/Card'
+import CardComponent from './Card.component';
 
 const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
   let faceUpCards: ICard[] = []
@@ -21,20 +22,20 @@ const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
       setFaceUp(faceUpCards)
     }
   }
-  console.log('test log')
+
   return (
     <div id="gameplayDeck">
       <button onClick={() => {drawThree()}}>Draw</button>
       <div id="deckFacedownCards">
         {faceDown.length ? faceDown.map(card => (
-          <p key={card.cardValue + card.suit}>{`${card.cardValue + 1} of ${card.suit}s`}</p>
+          <CardComponent key={card.cardValue + card.suit} card={card}/>
         )) :
           <p>No face down Cards</p>
         }
       </div>
       <div id="deckFaceupCards" style={{backgroundColor: "red"}}>
         {faceUp.length ? faceUp.map(card => (
-          <p key={card.cardValue + card.suit}>{`${card.cardValue + 1} of ${card.suit}s`}</p>
+          <CardComponent key={card.cardValue + card.suit} card={card}/>
         )) :
         <p>No face up cards</p>
       }

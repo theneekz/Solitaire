@@ -1,6 +1,5 @@
 import { ICard, Suit, CardValue  } from './Card'
 
-
 let suitArr = [Suit.HEART, Suit.DIAMOND, Suit.CLUB, Suit.SPADE]
 
 let valueArr = [
@@ -19,7 +18,6 @@ let valueArr = [
   CardValue.KING
 ]
 
-
 const suitBuilder = (suit: Suit) => {
   return valueArr.map(val => {
     return {
@@ -33,11 +31,12 @@ const suitBuilder = (suit: Suit) => {
 let deckCards: ICard[] = suitArr.map(suit => suitBuilder(suit)).flat()
 
 export class Deck {
+  //for new games, rebuild deck and randomize
   shuffle(): ICard[] {
     let currentIndex = deckCards.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+    while (currentIndex !== 0) {
 
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -52,5 +51,3 @@ export class Deck {
     return deckCards
   }
 }
-
-export default deckCards

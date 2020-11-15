@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GameplayDeck from './GameplayDeck.component';
 import Layout from './Layout.component';
 import CompletionPiles from './CompletionPiles.component';
@@ -8,7 +8,20 @@ import '../styles/Card.css';
 import '../styles/Board.css';
 
 const GameplayBoard = () => {
-  let gameplayDeck: ICard[] = new Deck().shuffle()
+  let initialGameplayDeck: ICard[] = new Deck().shuffle()
+  let initialLayoutDeck: ICard[] = []
+
+  const [gameplayDeck, setGamePlayDeck] = useState([...initialGameplayDeck])
+
+  const [layoutDeck, setLayoutDeck] = useState(initialLayoutDeck)
+
+  let setUp = () => {
+    let deck = new Deck().shuffle()
+    setLayoutDeck([...deck.slice(0, 28)])
+    setGamePlayDeck([...deck.slice(29)])
+  }
+
+  useEffect(() => {setUp()}, [])
 
   return (
     <div id="gamePlayBoard">
@@ -16,7 +29,7 @@ const GameplayBoard = () => {
         <GameplayDeck deckCards={gameplayDeck} />
         <CompletionPiles />
       </div>
-      <Layout />
+      <Layout layoutCards={layoutDeck}/>
     </div>
   );
 }

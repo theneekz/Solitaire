@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { ICard } from '../models/Card'
 import CardComponent from './Card.component';
 import '../styles/Deck.css'
@@ -8,6 +8,11 @@ const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
 
   const [faceUp, setFaceUp] = useState(faceUpCards)
   const [faceDown, setFaceDown] = useState(deckCards)
+
+  useEffect(()=>{
+    setFaceDown(deckCards)
+    setFaceUp(faceUpCards => faceUpCards)
+  },[deckCards])
 
   const drawThree = (): void => {
     if (faceDown.length) {

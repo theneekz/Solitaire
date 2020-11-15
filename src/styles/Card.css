@@ -15,3 +15,9 @@
 .faceDownCard {
   background-color: blueviolet;
 }
+
+.layoutFaceDownStack {
+  display: flex;
+  justify-self: flex-start;
+  z-index: 0;
+}

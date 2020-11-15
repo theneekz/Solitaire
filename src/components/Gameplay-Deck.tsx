@@ -21,7 +21,7 @@ const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
       setFaceUp(faceUpCards)
     }
   }
-
+  console.log('test log')
   return (
     <div id="gameplayDeck">
       <button onClick={() => {drawThree()}}>Draw</button>

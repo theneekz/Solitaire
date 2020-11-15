@@ -26,7 +26,7 @@ export interface ICard {
   cardValue: CardValue
   faceUp: boolean
   suitImage: string
-  getDisplayValue():void
+  getDisplayValue(): string
 }
 
 export class Card implements ICard{

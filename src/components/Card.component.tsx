@@ -1,15 +1,12 @@
 import React from 'react';
-import { ICard, Card } from '../models/Card'
+import { ICard } from '../models/Card'
 
 const CardComponent = ({card}: {card: ICard}) => {
-  const task = new Card(card.suit, card.cardValue, card.faceUp)
-
-  console.log(task, task.getDisplayValue())
-  // console.log(card)
+  console.log(card)
 
   return (
     <div className="card">
-      <p>{`${card.cardValue + 1} of ${card.suit}s`}</p>
+      <p>{`${card.getDisplayValue()} of ${card.suit}s`}</p>
     </div>
   )
 }

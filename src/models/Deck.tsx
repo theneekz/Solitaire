@@ -1,4 +1,4 @@
-import { ICard, Suit, CardValue  } from './Card'
+import { ICard, Suit, CardValue, Card  } from './Card'
 
 let suitArr = [Suit.HEART, Suit.DIAMOND, Suit.CLUB, Suit.SPADE]
 
@@ -20,11 +20,7 @@ let valueArr = [
 
 const suitBuilder = (suit: Suit) => {
   return valueArr.map(val => {
-    return {
-      suit,
-      cardValue: val,
-      faceUp: false
-    } as ICard
+    return new Card(suit, val, false)
   })
 }
 

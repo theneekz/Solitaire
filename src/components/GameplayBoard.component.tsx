@@ -2,14 +2,14 @@ import React from 'react';
 import GameplayDeck from './GameplayDeck.component';
 import { ICard } from '../models/Card';
 import { Deck } from '../models/Deck';
-import '../Card.css'
+import '../styles/Card.css';
 
 const GameplayBoard = () => {
 
   let gameplayDeck: ICard[] = new Deck().shuffle()
 
   return (
-    <div id="gameplayBoard">
+    <div id="gamePlayBoard">
       <GameplayDeck deckCards={gameplayDeck} />
     </div>
   );

@@ -24,20 +24,21 @@ const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
   }
 
   return (
-    <div id="gameplayDeck">
-      <button onClick={() => {drawThree()}}>Draw</button>
-      <div id="deckFacedownCards">
-        {faceDown.length ? faceDown.map(card => (
-          <CardComponent key={card.cardValue + card.suit} card={card}/>
-        )) :
-          <p>No face down Cards</p>
+    <div id="gamePlayDeck">
+      <div id="deckFaceDownCards" onClick={() => {drawThree()}}>
+        {faceDown.length ?
+          <div className="faceDownCard"></div> :
+          <div className="emptyCardPile">No face down Cards</div>
         }
       </div>
-      <div id="deckFaceupCards" style={{backgroundColor: "red"}}>
-        {faceUp.length ? faceUp.map(card => (
-          <CardComponent key={card.cardValue + card.suit} card={card}/>
+      <div id="deckFaceUpCards">
+        {faceUp.length ? faceUp.slice(0, 3).map((card, i) => (
+          <>
+            <span>{i}</span>
+            <CardComponent key={card.cardValue + card.suit} card={card} />
+          </>
         )) :
-        <p>No face up cards</p>
+        <div className="emptyCardPile">No face up cards</div>
       }
       </div>
     </div>

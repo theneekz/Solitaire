@@ -6,7 +6,8 @@ const CardComponent = ({card}: {card: ICard}) => {
 
   return (
     <div className="card">
-      <p>{`${card.getDisplayValue()} of ${card.suit}s`}</p>
+      <p>{`${card.getDisplayValue()} of`}</p>
+      <p>{`${card.suit}s`}</p>
     </div>
   )
 }

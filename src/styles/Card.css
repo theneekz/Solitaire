@@ -1,28 +1,5 @@
-#gamePlayBoard {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-}
-
-#gamePlayDeck {
-  width: 25vw;
-  height: 25vh;
-  display: flex;
-  margin: 5vh 3vw;
-}
-
-#deckFaceDownCards {
-  justify-content: left;
-}
-
-#deckFaceUpCards {
-  display: flex;
-  flex-direction: row;
-  margin-left: 3vw;
-}
-
 .card {
-  background-color: green;
+  background-color: greenyellow;
 }
 
 .card,
@@ -37,8 +14,4 @@
 
 .faceDownCard {
   background-color: blueviolet;
-}
-
-#deckFaceUpCards .card {
-  margin-left: -3vw;
 }

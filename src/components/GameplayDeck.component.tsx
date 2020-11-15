@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { ICard } from '../models/Card'
 import CardComponent from './Card.component';
+import '../styles/Deck.css'
 
 const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
   let faceUpCards: ICard[] = []
@@ -32,11 +33,8 @@ const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
         }
       </div>
       <div id="deckFaceUpCards">
-        {faceUp.length ? faceUp.slice(0, 3).map((card, i) => (
-          <>
-            <span>{i}</span>
-            <CardComponent key={card.cardValue + card.suit} card={card} />
-          </>
+        {faceUp.length ? faceUp.slice(0, 3).map(card => (
+          <CardComponent key={card.cardValue + card.suit} card={card} />
         )) :
         <div className="emptyCardPile">No face up cards</div>
       }

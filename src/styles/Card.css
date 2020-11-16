@@ -7,16 +7,14 @@
 .faceDownCard {
   border-radius: 3px;
   border: 2px solid;
-  height: 20vh;
-  width: 5vw;
+  height: 100px;
+  width: 70px;
   margin-right: 1vw;
 }
 
 .faceDownCard {
   background-color: blueviolet;
 }
-
-/* .layoutStack {} */
 
 .layoutFaceDownStack {
   position: absolute;

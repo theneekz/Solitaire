@@ -25,13 +25,13 @@ const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
             return <div 
               key={card.cardValue + card.suit} 
               className="card layoutCard layoutFaceUpStack"
-              style={{marginTop:`${(pileCards.length-i)*5}vh`}}
+              style={{marginTop:`${(pileCards.length-i)*5}px`}}
             >{`${card.getDisplayValue()} of ${card.suit}s`}</div>
           } else {
             return <div 
               key={card.cardValue + card.suit} 
               className="card faceDownCard layoutFaceDownStack"
-              style={{marginTop:`${i*5}vh`}}
+              style={{marginTop:`${i*5}px`}}
             ></div>
           }
       }): <div className="emptyCardPile">Empty Pile</div>}

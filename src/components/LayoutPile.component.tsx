@@ -20,11 +20,19 @@ const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
 
   return (
     <div>
-      {pileCards.length ? pileCards.map(card => {
+      {pileCards.length ? pileCards.map((card, i) => {
           if(card.faceUp) {
-            return <div key={card.cardValue + card.suit} className="card layoutCard">{`${card.getDisplayValue()} of ${card.suit}s`}</div>
+            return <div 
+              key={card.cardValue + card.suit} 
+              className="card layoutCard layoutFaceUpStack"
+              style={{marginTop:`${(pileCards.length-i)*5}vh`}}
+            >{`${card.getDisplayValue()} of ${card.suit}s`}</div>
           } else {
-            return <div key={card.cardValue + card.suit} className="card faceDownCard"></div>
+            return <div 
+              key={card.cardValue + card.suit} 
+              className="card faceDownCard layoutFaceDownStack"
+              style={{marginTop:`${i*5}vh`}}
+            ></div>
           }
       }): <div className="emptyCardPile">Empty Pile</div>}
     </div>

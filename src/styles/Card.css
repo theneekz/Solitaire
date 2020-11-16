@@ -16,8 +16,19 @@
   background-color: blueviolet;
 }
 
+/* .layoutStack {} */
+
 .layoutFaceDownStack {
-  display: flex;
-  justify-self: flex-start;
+  position: absolute;
+  top: initial;
   z-index: 0;
+  margin-top: 5vh;
+}
+
+.layoutFaceUpStack {
+  z-index: 1;
+  position: absolute;
+  /* top: 35vh; */
+  top: initial;
+  margin-top: 10vh;
 }

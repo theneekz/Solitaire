@@ -38,13 +38,31 @@ pipeline {
                 }
             }
         }
-        // stage('Confirm') {
-        //     steps{
-        //         script {
+        stage('Confirm') {
+            steps{
+                script {
+                    def deployed
+                    for (int i = 0; i < 10; i++) {
+                        def health = sh(
+                                script: "curl http://localhost:3000",
+                                returnStdout: true
+                        ).trim()
 
-        //         }
-        //     }
-        // }
+                        if(health.contains("<title>Patience</title>")) {
+                            deployed = true
+                            break
+                        }
+
+                        sleep time: i, unit: 'SECONDS'
+                    }
+                    if (!deployed) {
+                        error("Failed to deploy")
+                    } else {
+                        echo "woohoo"
+                    }
+                }
+            }
+        }
     }
     post {
         success {

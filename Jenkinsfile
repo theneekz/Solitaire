@@ -6,7 +6,7 @@ pipeline {
     agent any
     stages {
 
-        stage('Setup ') {
+        stage('Setup') {
             steps{
                 script {
                     checkout([

@@ -24,27 +24,27 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            steps{
-                script {
+        // stage('Deploy') {
+        //     steps{
+        //         script {
 
-                }
-            }
-        }
-        stage('Start') {
-            steps{
-                script {
+        //         }
+        //     }
+        // }
+        // stage('Start') {
+        //     steps{
+        //         script {
 
-                }
-            }
-        }
-        stage('Confirm') {
-            steps{
-                script {
+        //         }
+        //     }
+        // }
+        // stage('Confirm') {
+        //     steps{
+        //         script {
 
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
     }
     post {
         success {

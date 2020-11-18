@@ -2,6 +2,10 @@
   background-color: greenyellow;
 }
 
+body {
+  background-color: fuchsia;
+}
+
 .card,
 .emptyCardPile,
 .faceDownCard {

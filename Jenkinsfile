@@ -24,20 +24,20 @@ pipeline {
                 }
             }
         }
-        // stage('Deploy') {
-        //     steps{
-        //         script {
-
-        //         }
-        //     }
-        // }
-        // stage('Start') {
-        //     steps{
-        //         script {
-
-        //         }
-        //     }
-        // }
+        stage('Deploy') {
+            steps{
+                script {
+                    sh 'cp -r ./* /usr/local/solitare/Solitaire'
+                }
+            }
+        }
+        stage('Start') {
+            steps{
+                script {
+                    sh 'sudo systemctl restart solitaire.service;sudo systemctl status solitaire.service'
+                }
+            }
+        }
         // stage('Confirm') {
         //     steps{
         //         script {

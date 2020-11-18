@@ -45,6 +45,8 @@ pipeline {
                     for (int i = 0; i < 10; i++) {
                         def health = sh(script: "curl http://localhost:3000",returnStdout: true).trim()
 
+                        echo health
+
                         if(health.contains("<title>Patience</title>")) {
                             deployed = true
                             break

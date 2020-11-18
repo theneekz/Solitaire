@@ -43,13 +43,17 @@ pipeline {
                 script {
                     def deployed
                     for (int i = 0; i < 10; i++) {
-                        def health = sh(script: "curl http://localhost:3000",returnStdout: true).trim()
+                        try {
+                            def health = sh(script: "curl http://localhost:3000",returnStdout: true).trim()
 
-                        echo health
+                            echo health
 
-                        if(health.contains("<title>Patience</title>")) {
-                            deployed = true
-                            break
+                            if(health.contains("<title>Patience</title>")) {
+                                deployed = true
+                                break
+                            }
+                        } catch(Exception e) {
+                            echo "no dice"
                         }
 
                         sleep time: i, unit: 'SECONDS'

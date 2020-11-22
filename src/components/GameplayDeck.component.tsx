@@ -3,6 +3,12 @@ import { ICard } from '../models/Card'
 import CardComponent from './Card.component';
 import '../styles/Deck.css'
 
+// interface IProps {
+//   deckCards: ICard[],
+//   handleDragStart: (event: React.DragEvent, selectedCards: ICard[]) => void,
+//   draggedCards: ICard[]
+// }
+
 const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
   let faceUpCards: ICard[] = []
 

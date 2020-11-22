@@ -2,7 +2,10 @@ import React from 'react';
 
 const SuitPile = () => {
   return (
-    <div className="emptyCardPile">SuitPile</div>
+    <div className="emptyCardPile"
+    onDragOver={event=>{event.preventDefault()}}
+    onDrop={(e)=>console.log(e.dataTransfer.getData('text'))}
+    >SuitPile</div>
   );
 };
 

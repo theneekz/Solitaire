@@ -4,21 +4,36 @@ import { ICard, HomeComponent } from '../models/Card'
 export interface IProps {
   card: ICard,
   homeComponent?: HomeComponent,
-  i?: number
+  i?: number,
+  accessLayoutPileCards?: (i: number) => ICard[],
+  filterHandleDragEnd?: (i: number) => void
 }
 
 const CardComponent: React.FC<IProps> = (props: IProps) => {
 
-  const { card, homeComponent, i } = props
+  const { card, homeComponent, i, accessLayoutPileCards, filterHandleDragEnd } = props
 
   let handleDragStart = (event: React.DragEvent) => {
+    let payload
+    if (accessLayoutPileCards && typeof i === 'number'){
+      payload = accessLayoutPileCards(i)
+      //console.log(payload)
+    }
     if (event.dataTransfer && event.target) {
       event.dataTransfer.effectAllowed = 'move'
-      event.dataTransfer.setData('text', JSON.stringify(card))
+      event.dataTransfer.setData('text', JSON.stringify(payload))
+    }
+  }
+
+  const handleDragEnd = (event: React.DragEvent) => {
+    event.preventDefault()
+    if (filterHandleDragEnd && typeof i === 'number'){
+      filterHandleDragEnd(i)
     }
   }
 
   const style = i !== undefined && i > -1 && homeComponent === HomeComponent.LayoutPileComponent ? {marginTop:`${i*5 + 10}px`} : {marginTop: 'default'}
+
   return (
     <>
     {card ? card.faceUp ?
@@ -27,6 +42,7 @@ const CardComponent: React.FC<IProps> = (props: IProps) => {
         style={style}
         draggable="true"
         onDragStart={(e)=>handleDragStart(e)}
+        onDragEnd={e=>handleDragEnd(e)}
       >
         <p>{`${card.getDisplayValue()} of`}</p>
         <p>{`${card.suit}s`}</p>
@@ -35,7 +51,7 @@ const CardComponent: React.FC<IProps> = (props: IProps) => {
         key={card.cardValue + card.suit}
         className='card faceDown'
         style={style}
-      ></div> :
+    >{i}</div> :
       <div className="emptyCardPile">Empty Pile</div>
     }
     </>

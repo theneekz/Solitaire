@@ -39,7 +39,7 @@ const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
     <div id="gamePlayDeck">
       <div id="deckFaceDownCards" onClick={() => {drawThree()}}>
         {faceDown.length ?
-          <div className="faceDownCard"></div> :
+          <div className="card faceDown"></div> :
           <div className="emptyCardPile">No face down Cards</div>
         }
       </div>

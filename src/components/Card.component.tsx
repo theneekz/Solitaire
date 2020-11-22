@@ -1,7 +1,16 @@
 import React from 'react';
-import { ICard } from '../models/Card'
+import { ICard, HomeComponent } from '../models/Card'
 
-const CardComponent = ({card}: {card: ICard}) => {
+export interface IProps {
+  card: ICard,
+  homeComponent?: HomeComponent,
+  i?: number
+}
+
+const CardComponent: React.FC<IProps> = (props: IProps) => {
+
+  const { card, homeComponent, i } = props
+
   let handleDragStart = (event: React.DragEvent) => {
     if (event.dataTransfer && event.target) {
       event.dataTransfer.effectAllowed = 'move'
@@ -10,16 +19,29 @@ const CardComponent = ({card}: {card: ICard}) => {
       //event.dataTransfer.setDragImage(event.target.parentNode, 20, 20)
     }
   }
+
+  const style = i !== undefined && i > -1 && homeComponent === HomeComponent.LayoutPileComponent ? {marginTop:`${i*5 + 10}px`} : {marginTop: 'default'}
   return (
-    <div className="card"
-    id={`${card.getDisplayValue()}${card.suit}`}
-    draggable="true"
-    onDragStart={(e)=>handleDragStart(e)}
-    onDrop={()=>console.log('drag ended')}
-    >
-      <p>{`${card.getDisplayValue()} of`}</p>
-      <p>{`${card.suit}s`}</p>
-    </div>
+    <>
+    {card ? card.faceUp ?
+      <div className='card faceUp'
+        id={`${card.getDisplayValue()}${card.suit}`}
+        style={style}
+        draggable="true"
+        onDragStart={(e)=>handleDragStart(e)}
+        onDrop={()=>console.log('drag ended')}
+      >
+        <p>{`${card.getDisplayValue()} of`}</p>
+        <p>{`${card.suit}s`}</p>
+      </div> :
+      <div
+        key={card.cardValue + card.suit}
+        className='card faceDown'
+        style={style}
+      ></div> :
+      <div className="emptyCardPile">Empty Pile</div>
+    }
+    </>
   )
 }
 export default CardComponent

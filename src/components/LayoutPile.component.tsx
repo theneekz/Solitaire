@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ICard } from '../models/Card'
+import { HomeComponent, ICard } from '../models/Card'
+import CardComponent, { IProps } from './Card.component'
+// import { IProps } from './Card.component'
 
 const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
   let initialLayoutPileCards: ICard[] = []
@@ -12,30 +14,24 @@ const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
 
   const flipCard = (): void => {
     if (layoutPileCards.length) {
-      let flipped = layoutPileCards[0]
+      let flipped = layoutPileCards[layoutPileCards.length - 1]
       flipped.faceUp = true
       setLayoutPileCards([flipped, ...layoutPileCards.slice(1)])
     }
   }
 
   return (
-    <div>
-      {pileCards.length ? pileCards.map((card, i) => {
-          if(card.faceUp) {
-            return <div
-              key={card.cardValue + card.suit}
-              className="card layoutCard layoutFaceUpStack"
-              style={{marginTop:`${(pileCards.length-i)*5}px`}}
-            >{`${card.getDisplayValue()} of ${card.suit}s`}</div>
-          } else {
-            return <div
-              key={card.cardValue + card.suit}
-              className="card faceDownCard layoutFaceDownStack"
-              style={{marginTop:`${i*5}px`}}
-            ></div>
-          }
-      }): <div className="emptyCardPile">Empty Pile</div>}
-    </div>
+    <div className="layoutPile">
+      {pileCards.map((card: ICard, i: number) => {
+        const props: IProps = {
+          card,
+          homeComponent: HomeComponent.LayoutPileComponent,
+          i
+        }
+        return <CardComponent key={card.cardValue + card.suit} {...props} />
+      })
+    }
+   </div>
   );
 };
 

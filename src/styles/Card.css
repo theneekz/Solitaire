@@ -16,21 +16,21 @@ body {
   margin-right: 1vw;
 }
 
-.faceDownCard {
+.faceDown {
   background-color: blueviolet;
 }
 
-.layoutFaceDownStack {
+.layoutPile .faceDown {
   position: absolute;
   top: initial;
   z-index: 0;
   margin-top: 5vh;
 }
 
-.layoutFaceUpStack {
-  z-index: 1;
+.layoutPile .faceUp {
   position: absolute;
-  /* top: 35vh; */
   top: initial;
-  margin-top: 10vh;
+  z-index: 1;
+  /* top: 35vh; */
+  margin-top: 5vh;
 }

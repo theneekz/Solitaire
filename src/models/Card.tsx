@@ -1,3 +1,7 @@
+export enum HomeComponent {
+  LayoutPileComponent = 'layout_pile_component'
+}
+
 export enum Suit {
   CLUB = 'club',
   SPADE = 'spade',

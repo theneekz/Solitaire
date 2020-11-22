@@ -14,9 +14,7 @@ const CardComponent: React.FC<IProps> = (props: IProps) => {
   let handleDragStart = (event: React.DragEvent) => {
     if (event.dataTransfer && event.target) {
       event.dataTransfer.effectAllowed = 'move'
-      const id = (event.target as HTMLDivElement).id
-      event.dataTransfer.setData('text', id)
-      //event.dataTransfer.setDragImage(event.target.parentNode, 20, 20)
+      event.dataTransfer.setData('text', JSON.stringify(card))
     }
   }
 
@@ -29,7 +27,6 @@ const CardComponent: React.FC<IProps> = (props: IProps) => {
         style={style}
         draggable="true"
         onDragStart={(e)=>handleDragStart(e)}
-        onDrop={()=>console.log('drag ended')}
       >
         <p>{`${card.getDisplayValue()} of`}</p>
         <p>{`${card.suit}s`}</p>

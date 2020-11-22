@@ -4,21 +4,20 @@ import CardComponent, { IProps } from './Card.component'
 // import { IProps } from './Card.component'
 
 const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
-  let initialLayoutPileCards: ICard[] = []
-  let [layoutPileCards, setLayoutPileCards] = useState(initialLayoutPileCards)
-
-  useEffect(() => {
-    layoutPileCards = pileCards
-    flipCard()
-  }, pileCards)
+  let [layoutPileCards, setLayoutPileCards] = useState(pileCards)
 
   const flipCard = (): void => {
     if (layoutPileCards.length) {
       let flipped = layoutPileCards[layoutPileCards.length - 1]
       flipped.faceUp = true
-      setLayoutPileCards([flipped, ...layoutPileCards.slice(1)])
+      setLayoutPileCards(layoutPileCards => [flipped, ...layoutPileCards.slice(1)])
+      console.log('flipped')
     }
   }
+
+  useEffect(() => {
+    flipCard()
+  }, [])
 
   return (
     <div className="layoutPile">

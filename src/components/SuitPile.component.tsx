@@ -8,9 +8,10 @@ const SuitPile = () => {
   let [ suitPileCards, setSuitPileCards ] = useState(initialSuitPileState)
 
   const handleDrop = (event: React.DragEvent) => {
-    let receivedCard = JSON.parse(event.dataTransfer.getData('text')) as ICard
-    let newCard = new Card(receivedCard.suit, receivedCard.cardValue, receivedCard.faceUp, receivedCard.suitImage)
-    setSuitPileCards((suitPileCards) => [...suitPileCards, newCard])
+    let payload = JSON.parse(event.dataTransfer.getData('text'))
+    let draggedPileCards: ICard[] = payload.map((receivedCard: ICard) => new Card(receivedCard.suit, receivedCard.cardValue, receivedCard.faceUp, receivedCard.suitImage))
+
+    setSuitPileCards((suitPileCards) => [...suitPileCards, ...draggedPileCards])
 
   }
 

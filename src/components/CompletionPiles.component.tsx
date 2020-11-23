@@ -1,13 +1,14 @@
 import React from 'react';
 import SuitPile from './SuitPile.component'
+import { ICompletionPilesProps } from '../models/Props'
 
-const CompletionPiles = () => {
+const CompletionPiles:  React.FC<ICompletionPilesProps> = ( props: ICompletionPilesProps ) => {
   return (
     <div className="completionPiles">
-      <SuitPile />
-      <SuitPile />
-      <SuitPile />
-      <SuitPile />
+      <SuitPile {...props}/>
+      <SuitPile {...props}/>
+      <SuitPile {...props}/>
+      <SuitPile {...props}/>
     </div>
   )
 }

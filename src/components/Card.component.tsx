@@ -1,17 +1,11 @@
 import React from 'react';
-import { ICard, HomeComponent } from '../models/Card'
+import { HomeComponent } from '../models/Card'
+import { ICardComponentProps } from '../models/Props'
 
-export interface IProps {
-  card: ICard,
-  homeComponent?: HomeComponent,
-  i?: number,
-  accessLayoutPileCards?: (i: number) => ICard[],
-  filterHandleDragEnd?: (i: number) => void
-}
 
-const CardComponent: React.FC<IProps> = (props: IProps) => {
+const CardComponent: React.FC<ICardComponentProps> = (props: ICardComponentProps) => {
 
-  const { card, homeComponent, i, accessLayoutPileCards, filterHandleDragEnd } = props
+  const { card, isValidDropSite, setIsValidDropSite, homeComponent, i, accessLayoutPileCards, filterHandleDragEnd } = props
 
   let handleDragStart = (event: React.DragEvent) => {
     let payload
@@ -27,6 +21,7 @@ const CardComponent: React.FC<IProps> = (props: IProps) => {
 
   const handleDragEnd = (event: React.DragEvent) => {
     event.preventDefault()
+    console.log(event)
     if (filterHandleDragEnd && typeof i === 'number'){
       filterHandleDragEnd(i)
     }

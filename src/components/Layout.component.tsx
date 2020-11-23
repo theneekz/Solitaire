@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { ICard } from '../models/Card';
+import { ILayoutProps, ILayoutPileProps } from '../models/Props'
 import LayoutPile from './LayoutPile.component'
 
-const Layout = ({layoutCards}: {layoutCards: ICard[]}) => {
+const Layout: React.FC<ILayoutProps> = ( props: ILayoutProps ) => {
+  let { layoutCards, isValidDropSite, setIsValidDropSite } = props
+
   let initialLayoutPiles: ICard[][] = []
   const [layoutPiles, setLayoutPiles] = useState(initialLayoutPiles)
 
@@ -20,9 +23,14 @@ const Layout = ({layoutCards}: {layoutCards: ICard[]}) => {
 
   return (
     <div className="boardBottom">
-      {layoutPiles.map((pile, i) => (
-        <LayoutPile key={"pile"+i} pileCards={pile}/>
-      ))}
+      {layoutPiles.map((pile, i) => {
+        const layoutPileProps: ILayoutPileProps = {
+          pileCards: pile,
+          isValidDropSite, 
+          setIsValidDropSite
+        }
+        return <LayoutPile key={"pile"+i} {...layoutPileProps}/>
+      })}
     </div>
   );
 };

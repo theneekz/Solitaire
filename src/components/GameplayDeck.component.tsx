@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { ICard } from '../models/Card'
 import CardComponent from './Card.component';
 import '../styles/Deck.css'
+import { ICardComponentProps, IGameplayDeckProps } from '../models/Props'
 
 // interface IProps {
 //   deckCards: ICard[],
@@ -9,7 +10,8 @@ import '../styles/Deck.css'
 //   draggedCards: ICard[]
 // }
 
-const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
+const GameplayDeck: React.FC<IGameplayDeckProps> = ( props: IGameplayDeckProps ) => {
+  let { deckCards, isValidDropSite, setIsValidDropSite } = props
   let faceUpCards: ICard[] = []
 
   const [faceUp, setFaceUp] = useState(faceUpCards)
@@ -44,9 +46,15 @@ const GameplayDeck = ({deckCards}: {deckCards: ICard[]}) => {
         }
       </div>
       <div id="deckFaceUpCards">
-        {faceUp.length ? faceUp.slice(0, 3).map(card => (
-          <CardComponent key={card.cardValue + card.suit} card={card} />
-        )) :
+        {faceUp.length ? faceUp.slice(0, 3).map(card => {
+          const cardProps: ICardComponentProps = {
+            card,
+            isValidDropSite, 
+            setIsValidDropSite
+          }
+          return <CardComponent key={card.cardValue + card.suit} {...cardProps} />
+        }
+        ) :
         <div className="emptyCardPile">No face up cards</div>
       }
       </div>

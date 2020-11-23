@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Card, HomeComponent, ICard } from '../models/Card'
-import CardComponent, { IProps } from './Card.component'
-// import { IProps } from './Card.component'
+import CardComponent from './Card.component'
+import { ICardComponentProps, ILayoutPileProps } from '../models/Props'
 
-const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
+const LayoutPile = (props: ILayoutPileProps ) => {
+  const { pileCards, isValidDropSite, setIsValidDropSite } = props
+
   const defaultEmptyPile: ICard[] = []
   let [layoutPileCards, setLayoutPileCards] = useState(pileCards)
 
@@ -47,12 +49,14 @@ const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
   useEffect(() => {}, [layoutPileCards])
   return (
     <div className="layoutPile"
-    onDragOver={event=>{event.preventDefault()}}
+      onDragOver={event=>{event.preventDefault()}}
       onDrop={(e)=>handleDrop(e)}
     >
       {layoutPileCards.map((card: ICard, i: number) => {
-        const props: IProps = {
+        const props: ICardComponentProps = {
           card,
+          isValidDropSite, 
+          setIsValidDropSite,
           homeComponent: HomeComponent.LayoutPileComponent,
           i,
           accessLayoutPileCards,

@@ -11,7 +11,6 @@ const CardComponent: React.FC<ICardComponentProps> = (props: ICardComponentProps
     let payload
     if (accessLayoutPileCards && typeof i === 'number'){
       payload = accessLayoutPileCards(i)
-      //console.log(payload)
     }
     if (event.dataTransfer && event.target) {
       event.dataTransfer.effectAllowed = 'move'
@@ -22,6 +21,7 @@ const CardComponent: React.FC<ICardComponentProps> = (props: ICardComponentProps
   const handleDragEnd = (event: React.DragEvent) => {
     event.preventDefault()
     if (filterHandleDragEnd && typeof i === 'number' && isValidDropSite){
+      console.log('drag ended')
       filterHandleDragEnd(i)
     }
   }

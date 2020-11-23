@@ -3,12 +3,12 @@ import { Card, HomeComponent, ICard } from '../models/Card'
 import CardComponent from './Card.component'
 import { ICardComponentProps, ILayoutPileProps } from '../models/Props'
 
-const LayoutPile = (props: ILayoutPileProps ) => {
-  const { pileCards, isValidDropSite, setIsValidDropSite } = props
+const LayoutPile: React.FC<ILayoutPileProps> = (props: ILayoutPileProps ) => {
+  let { pileCards, isValidDropSite, setIsValidDropSite } = props
 
   const defaultEmptyPile: ICard[] = []
-  let [layoutPileCards, setLayoutPileCards] = useState(pileCards)
 
+  let [layoutPileCards, setLayoutPileCards] = useState(pileCards)
 
   const flipCard = (): void => {
     if (layoutPileCards.length && !layoutPileCards[layoutPileCards.length - 1].faceUp) {
@@ -22,11 +22,14 @@ const LayoutPile = (props: ILayoutPileProps ) => {
     }
   }
 
-  const handleDrop = (event: React.DragEvent) => {
-    let payload = JSON.parse(event.dataTransfer.getData('text'))
-    let draggedPileCards: ICard[] = payload.map((receivedCard: ICard) => new Card(receivedCard.suit, receivedCard.cardValue, receivedCard.faceUp, receivedCard.suitImage))
-
-    setLayoutPileCards((layoutPileCards) => [...layoutPileCards, ...draggedPileCards])
+  const handleDrop = (event: React.DragEvent): void => {
+    if (isValidDropSite){
+      let payload = JSON.parse(event.dataTransfer.getData('text'))
+      let draggedPileCards: ICard[] = payload.map((receivedCard: ICard) => new Card(receivedCard.suit, receivedCard.cardValue, receivedCard.faceUp, receivedCard.suitImage))
+  
+      setLayoutPileCards((layoutPileCards) => [...layoutPileCards, ...draggedPileCards])
+      //setIsValidDropSite(false)
+    }
   }
 
   const handleDragOver = (event: React.DragEvent): void => {

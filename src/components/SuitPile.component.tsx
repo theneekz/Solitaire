@@ -8,17 +8,16 @@ const SuitPile: React.FC<ICompletionPilesProps> = ( props: ICompletionPilesProps
 
   let [ suitPileCards, setSuitPileCards ] = useState(initialSuitPileState)
 
-
   let { isValidDropSite, setIsValidDropSite } = props
 
   const handleDrop = (event: React.DragEvent): void => {
-    if (isValidDropSite) {
+    // if (isValidDropSite) {
       let payload = JSON.parse(event.dataTransfer.getData('text'))
       let draggedPileCards: ICard[] = payload.map((receivedCard: ICard) => new Card(receivedCard.suit, receivedCard.cardValue, receivedCard.faceUp, receivedCard.suitImage))
   
       setSuitPileCards((suitPileCards) => [...suitPileCards, ...draggedPileCards])
-      setIsValidDropSite(false)
-    }
+      //setIsValidDropSite(false)
+    // }
   }
 
   const handleDragOver = (event: React.DragEvent): void => {

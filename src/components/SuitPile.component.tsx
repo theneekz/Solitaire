@@ -37,7 +37,6 @@ const SuitPile: React.FC<ICompletionPilesProps> = ( props: ICompletionPilesProps
     setIsValidDropSite: props.setIsValidDropSite
   }
 
-  console.log(isValidDropSite, 'i love you')
   useEffect(() => {}, [suitPileCards])
 
   return (

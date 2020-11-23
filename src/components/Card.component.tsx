@@ -21,8 +21,7 @@ const CardComponent: React.FC<ICardComponentProps> = (props: ICardComponentProps
 
   const handleDragEnd = (event: React.DragEvent) => {
     event.preventDefault()
-    console.log(event)
-    if (filterHandleDragEnd && typeof i === 'number'){
+    if (filterHandleDragEnd && typeof i === 'number' && isValidDropSite){
       filterHandleDragEnd(i)
     }
   }

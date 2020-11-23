@@ -29,6 +29,16 @@ const LayoutPile = (props: ILayoutPileProps ) => {
     setLayoutPileCards((layoutPileCards) => [...layoutPileCards, ...draggedPileCards])
   }
 
+  const handleDragOver = (event: React.DragEvent): void => {
+    event.preventDefault()
+    setIsValidDropSite(true)
+  }
+
+  const handleDragLeave = (event: React.DragEvent): void => {
+    event.preventDefault()
+    setIsValidDropSite(false)
+  }
+
   const accessLayoutPileCards = (i: number): ICard[] => {
     return layoutPileCards.slice(i)
   }
@@ -49,7 +59,8 @@ const LayoutPile = (props: ILayoutPileProps ) => {
   useEffect(() => {}, [layoutPileCards])
   return (
     <div className="layoutPile"
-      onDragOver={event=>{event.preventDefault()}}
+      onDragOver={event=>handleDragOver(event)}
+      onDragLeave={event=>handleDragLeave(event)}
       onDrop={(e)=>handleDrop(e)}
     >
       {layoutPileCards.map((card: ICard, i: number) => {

@@ -4,6 +4,7 @@ import CardComponent, { IProps } from './Card.component'
 // import { IProps } from './Card.component'
 
 const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
+  const defaultEmptyPile: ICard[] = []
   let [layoutPileCards, setLayoutPileCards] = useState(pileCards)
 
 
@@ -31,8 +32,12 @@ const LayoutPile = ({pileCards}: {pileCards: ICard[]}) => {
   }
 
   const filterHandleDragEnd = (i: number): void => {
-    setTimeout(()=>flipCard(), 1000)
-    setLayoutPileCards(layoutPileCards => [...layoutPileCards.slice(0, i)])
+    setLayoutPileCards(layoutPileCards => {
+      const card = layoutPileCards[i - 1]
+      if (!card) return defaultEmptyPile
+      const flippedCard = new Card(card.suit, card.cardValue, true, card.suitImage)
+      return [...layoutPileCards.slice(0, i - 1), flippedCard]
+    })
   }
 
   useEffect(() => {
